@@ -41,6 +41,12 @@ function displaySettings() {
   replaceClass(consent, 'visible', 'hidden');
 }
 
+function hideModal() {
+  replaceClass(consent, 'visible', 'hidden');
+  replaceClass(outOfFocus, 'visible', 'hidden');
+  replaceClass(settings, 'visible', 'hidden');
+}
+
 function getOS() {
   if (userAgentString.includes('Win')) return 'Windows';
   if (userAgentString.includes('Mac')) return 'MacOS';
@@ -107,3 +113,23 @@ function checkCookies(){
   if (document.cookie.length > 0) return;
   displayConsent();
 }
+
+let osType = getOS();
+let screenWidthValue = getScreenWidth();
+let screenHeightValue = getScreenHeight();
+let browserValue = getBrowser();
+
+
+listen('load', window, () => {
+  checkCookies();
+});
+
+listen('click', acceptAll, () => {
+  setCookie('OS', osType);
+  setCookie('Browser', browserValue);
+  setCookie('Screen Width', screenWidthValue);
+  setCookie('Screen Height', screenHeightValue);
+  hideModal();
+});
+
+listen('click', settingsBtn, displaySettings);
