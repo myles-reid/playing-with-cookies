@@ -17,8 +17,37 @@
     <script src="./assets/js/app.js" defer></script>
   </head>
   <body>
-    <main>
-
-    </main>
+    <div class="modal consent">
+      <h2>Cookies</h2>
+      <p>
+        We use cookies to improve your experience on our website. 
+        By clicking 'Accept', you agree to the use of cookies for 
+        marketing and analytics purposes.
+      </p>
+      <button class="accept">Accept</button>
+      <button class="settingsbtn">Settings</button>
+    </div>
+    <div class="modal settings">
+      <h2>Settings</h2>
+      <ul class="options">
+        <li>
+          <label for="browser">Browser</label>
+          <input type="checkbox" id="browser" checked>
+        </li>
+        <li>
+          <label for="os">Operating System</label>
+          <input type="checkbox" id="os" checked>
+        </li>
+        <li>
+          <label for="width">Screen width</label>
+          <input type="checkbox" id="width" checked>
+        </li>
+        <li>
+          <label for="height">Screen height</label>
+          <input type="checkbox" id="height" checked>
+        </li>
+      </ul>
+    </div>
+    <main></main>
   </body>
 </html>
