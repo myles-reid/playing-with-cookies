@@ -33,18 +33,32 @@ const userAgentString = navigator.userAgent;
 
 function displayConsent() {
    replaceClass(consent, 'hidden', 'visible');
+   animation(consent);
    replaceClass(outOfFocus, 'hidden', 'visible');
 }
 
 function displaySettings() {
-  replaceClass(settings, 'hidden', 'visible');
   replaceClass(consent, 'visible', 'hidden');
+  setTimeout( () => {
+    replaceClass(settings, 'hidden', 'visible');
+    animation(settings);
+  }, 300);
 }
 
 function hideModal() {
+  if (consent.classList.contains('visible')) animation(consent);
+  if (settings.classList.contains('visible')) animation(settings);
   replaceClass(consent, 'visible', 'hidden');
   replaceClass(outOfFocus, 'visible', 'hidden');
   replaceClass(settings, 'visible', 'hidden');
+}
+
+function animation(element) {
+  if (element.classList.contains('slide-in')) {
+    removeClass(element, 'slide-in');
+  } else {
+    addClass(element, 'slide-in');
+  }
 }
 
 function getOS() {
@@ -148,7 +162,7 @@ let browserValue = getBrowser();
 
 
 listen('load', window, () => {
-  checkCookies();
+  setTimeout(() => checkCookies(), 500);
   printCookies();
 });
 
@@ -161,7 +175,9 @@ listen('click', acceptAll, () => {
   printCookies();
 });
 
-listen('click', settingsBtn, displaySettings);
+listen('click', settingsBtn, () => {
+  displaySettings(); 
+});
 
 listen('click', saveBtn, () => {
   setCustomCookies(); 
