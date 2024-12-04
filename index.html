@@ -17,6 +17,7 @@
     <script src="./assets/js/app.js" defer></script>
   </head>
   <body>
+    <div class="out-of-focus hidden"></div>
     <div class="modal consent">
       <h2>Cookies</h2>
       <p>
@@ -24,29 +25,32 @@
         By clicking 'Accept', you agree to the use of cookies for 
         marketing and analytics purposes.
       </p>
-      <button class="accept">Accept</button>
-      <button class="settingsbtn">Settings</button>
+      <div class="buttons">
+        <button class="accept">Accept</button>
+        <button class="settingsbtn">Settings</button>
+      </div>
     </div>
     <div class="modal settings">
       <h2>Settings</h2>
       <ul class="options">
         <li>
           <label for="browser">Browser</label>
-          <input type="checkbox" id="browser" checked>
+          <input type="checkbox" id="browser" class="toggle" checked>
         </li>
         <li>
           <label for="os">Operating System</label>
-          <input type="checkbox" id="os" checked>
+          <input type="checkbox" id="os" class="toggle" checked>
         </li>
         <li>
           <label for="width">Screen width</label>
-          <input type="checkbox" id="width" checked>
+          <input type="checkbox" id="width" class="toggle" checked>
         </li>
         <li>
           <label for="height">Screen height</label>
-          <input type="checkbox" id="height" checked>
+          <input type="checkbox" id="height" class="toggle" checked>
         </li>
       </ul>
+      <button class="save">Save preferences</button>
     </div>
     <main></main>
   </body>

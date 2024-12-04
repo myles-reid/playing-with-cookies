@@ -88,6 +88,14 @@ a {
 .z-index-1 {
   z-index: 1;
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
 /*--------------------------------*/
 /* text                           */
 /*--------------------------------*/

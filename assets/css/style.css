@@ -10,3 +10,126 @@ body {
   background-color: var(--app-color-dark-bg);
 }
 
+main {
+  height: 100svh;
+  background: 
+  url(../img/banner-bg.jpg)
+  no-repeat
+  fixed;
+  background-size: cover;
+}
+
+.out-of-focus {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0 0 0 / 70%);
+  backdrop-filter: saturate(180%);
+  z-index: 100;
+  transition: all 0.25s ease-in-out;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: 275px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ebebeb;
+  justify-content: space-between;
+  padding: 25px;
+  border-radius: 6px;
+}
+
+.modal h2 {
+  font-size: 27px;
+  font-weight: 400;
+}
+
+.modal p {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+.consent {
+  z-index: 100;
+  inset: 70%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;  
+}
+
+button {
+  border-radius: 25px;
+  padding: 5px 15px;
+  font-size: 16px;
+  border: 1.5px solid blue;
+  transition: all 0.25s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.accept, .save {
+  background-color: blue;
+  color: white;
+}
+
+.settingsbtn:hover {
+  color: blue;
+}
+
+.accept:hover, .save:hover {
+  background-color: rgb(0, 0, 160)
+}
+
+.save {
+  width: fit-content;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.toggle {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  appearance: none;
+  background: #c6c6c6;
+  outline: none;
+  border-radius: 20px;
+  transition: background 0.3s;
+  cursor: pointer;
+}
+
+.toggle:checked {
+  background: blue;
+}
+
+.toggle:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  left: 3px;
+  box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
+  transition: 0.3s;
+}
+
+.toggle:checked:before {
+  transform: translateX(18px);
+}
