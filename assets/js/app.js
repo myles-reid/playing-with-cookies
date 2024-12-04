@@ -104,14 +104,41 @@ function setCookie(key, value) {
 }
 
 function getCookie(name) {
-  const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
-  if (match) return match[2];
-  return 'No cookie found';
+  const encodedName = encodeURIComponent(name);
+  const match = document.cookie.match(new RegExp("(^| )" + encodedName + "=([^;]+)"));
+  if (match) return decodeURIComponent(match[2]);
+  return;
 }
 
 function checkCookies(){
   if (document.cookie.length > 0) return;
   displayConsent();
+}
+
+function setCustomCookies() {
+  const checkboxes = [browser, os, screenWidth, screenHeight];
+  const noneChecked = checkboxes.every(checkbox => !checkbox.checked);
+
+  if (browser.checked) { setCookie('Browser', browserValue); }
+  if (os.checked) { setCookie('OS', osType); }
+  if (screenWidth.checked) { setCookie('Screen Width', screenWidthValue); }
+  if (screenHeight.checked) { setCookie('Screen Height', screenHeightValue); }
+  if (noneChecked) { setCookie('Cookies', 'None'); }
+}
+
+function printCookies() {
+  if (getCookie('OS') != null) { console.log(`OS: ${getCookie('OS')}`); }
+  if (getCookie('Browser') != null) { 
+    console.log(`Browser: ${getCookie('Browser')}`); 
+  }
+  if (getCookie('Screen Width') != null) { 
+    console.log(`Screen Width: ${getCookie('Screen Width')}`); 
+  }
+  if (getCookie('Screen Height') != null) { 
+    console.log(`Screen Height: ${getCookie('Screen Height')}`); 
+  }
+
+  if (getCookie('Cookies') != null) { console.log('Cookies Not Enabled'); }
 }
 
 let osType = getOS();
@@ -122,6 +149,7 @@ let browserValue = getBrowser();
 
 listen('load', window, () => {
   checkCookies();
+  printCookies();
 });
 
 listen('click', acceptAll, () => {
@@ -130,6 +158,14 @@ listen('click', acceptAll, () => {
   setCookie('Screen Width', screenWidthValue);
   setCookie('Screen Height', screenHeightValue);
   hideModal();
+  printCookies();
 });
 
 listen('click', settingsBtn, displaySettings);
+
+listen('click', saveBtn, () => {
+  setCustomCookies(); 
+  printCookies();
+  hideModal();
+});
+
